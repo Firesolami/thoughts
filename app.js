@@ -14,6 +14,12 @@ const indexRouter = require('./routes/index');
 
 const app = express();
 
+//fixing inline styling
+app.use((req, res, next) => {
+  res.removeHeader("Content-Security-Policy"); 
+  next();
+});
+
 // Set up mongoose connection
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
