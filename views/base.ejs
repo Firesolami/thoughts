@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+</head>
+<body>
+    <header>
+        <h1 onclick="viewMessageDetails('/home')">Thoughts</h1>
+        <div class="hamburger" id="hamburger">
+            ☰
+        </div>
+    </header>
+    <nav id="nav-menu">
+        <h3><%= currentUser.firstName %>, <%= currentUser.lastName %></h3>
+        <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/create-message">Think a thought</a></li>
+            <li><a href="/become-member">Become a premium member</a></li>
+            <li><a href="/become-admin">Become an admin</a></li>
+            <li><a href="/">Info</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+    <a href="/create-message" class="create-thought-button">+</a>
+    <script>
+        // Toggle navigation menu
+        document.getElementById('hamburger').addEventListener('click', function() {
+            var navMenu = document.getElementById('nav-menu');
+            navMenu.classList.toggle('show');
+        });
+
+        // Close navigation menu when clicking outside
+        document.addEventListener('click', function(event) {
+            var navMenu = document.getElementById('nav-menu');
+            var hamburger = document.getElementById('hamburger');
+            if (!navMenu.contains(event.target) && !hamburger.contains(event.target)) {
+                navMenu.classList.remove('show');
+            }
+        });
+
+        // Function to view message details
+        function viewMessageDetails(url) {
+            window.location.href = url;
+        }
+    </script>
+</body>
+</html>

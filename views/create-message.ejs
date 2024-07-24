@@ -1,0 +1,16 @@
+<%- include('base', {title: title}) %>
+<body>
+    <main class="create-thought-main">
+        <div class="create-thought-container">
+            <h2>Think a Thought</h2>
+            <form action="" method="POST">
+                <div id="editor">
+                    <!-- Replace the hidden input with a textarea for message input -->
+                    <textarea name="message" id="message" style="width: 100%; height: 40vh;"><%= message %></textarea>
+                </div>
+                <button type="submit">Post!</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<%- include('base', {title: title}) %>
+<html>
+<body>
+    <main>
+        <div class="post" onclick="viewMessageDetails('/')">
+            <div class="post-content">
+                <span>Premium member/admin count: <%= count %> </span>                
+            </div>
+        </div>
+        <% messages.forEach((message_detail) => { %>
+            <div class="post" onclick="viewMessageDetails('<%- message_detail.url %>')">
+                <% if (currentUser.isMember || message_detail.author.username === currentUser.username ) { %>
+                    <div class="post-header">
+                        <span class="username"><%- message_detail.author.username %></span>
+                        <span class="date"><%- message_detail.date_formatted %></span>
+                    </div>
+                <hr class="post-header">
+                <% } %>
+                <div class="post-content">
+                    <%- message_detail.message.length > 1000 ? message_detail.message.substring(0, 1000) + "..." : message_detail.message %>                
+                </div>
+            </div>
+        <% }); %>        
+    </main>
+</body>
+</html>

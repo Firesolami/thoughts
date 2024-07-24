@@ -1,0 +1,25 @@
+<%- include('base', {title: title}) %>
+<html>
+<body>
+    <main>
+        <div class="post">
+            <% if (currentUser.isMember || currentUser.username === message_detail.author.username) { %>
+                <div class="post-header">
+                    <span class="username"><%- message_detail.author.firstName %>, <%- message_detail.author.lastName %> - <%- message_detail.author.username %></span>
+                    <span class="date"><%- message_detail.date_formatted %></span>
+                </div>
+                <hr class="post-header">
+            <% } %>
+            <div class="post-content">
+                <%- message_detail.message %>
+            </div>
+      
+        </div>
+        <% if (currentUser.isAdmin) { %>
+        <div>
+            <a href="<%= `./${message_detail._id}/delete` %>">Delete message</a>
+        </div>                
+        <% } %>         
+    </main>
+</body>
+</html>

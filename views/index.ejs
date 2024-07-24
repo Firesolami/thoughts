@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thoughts</title>
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+</head>
+<body>
+    <main class="info-main">
+        <div class="info-container">
+            <h2>Welcome to Thoughts</h2>
+            <p>
+                Thoughts is a unique platform where people can share their deepest thoughts and darkest secrets 
+                <b>anonymously</b>. This community is built on trust and privacy, allowing users to express themselves 
+                freely without fear of judgment.
+            </p>
+            <section id="normal-users">
+                <h3>Normal Users</h3>
+                <p>
+                    As a normal user, you can post any thought or secret that comes to your mind. However, you won't be able 
+                    to see who posted any thought, except your own.
+                </p>
+            </section>
+            <section id="members">
+                <h3>Premium members</h3>
+                <p>
+                    Want to snoop around and see who posted what? Become a member by guessing a 4-digit code correctly. 
+                    Members can see the names of the people who posted the thoughts.
+                </p>
+            </section>
+            <section id="admin">
+                <h3>Admins</h3>
+                <p>
+                    Looking for more power? Become an admin by guessing a 6-digit code correctly. Admins can see who posted 
+                    each thought and have the power to delete any thought, whether it’s their own or someone else's.
+                </p>
+            </section>
+            <% if (isSignedIn) { %>
+                <div class="action-buttons">
+                    <button onclick="location.href='/home'">Go to home page</button>
+                </div>
+            <% } else { %>
+                <div class="action-buttons">
+                    <button onclick="location.href='/login'">Login</button>
+                    <button onclick="location.href='/signup'">Sign Up</button>
+                </div>
+            <% } %>
+        </div>
+    </main>
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const hash = window.location.hash.substring(1);
+            if (hash) {
+                const section = document.getElementById(hash);
+                if (section) {
+                    section.classList.add('highlight');
+                    setTimeout(() => {
+                        section.classList.remove('highlight');
+                    }, 5000); 
+                }
+            }
+        });
+    </script>
+</body>
+</html>

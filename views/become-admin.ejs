@@ -1,0 +1,24 @@
+<%- include('base', {title: title}) %>
+<html>
+<body>
+    <main class="login-main">
+        <div class="login-container">
+            <% if (errors.length > 0) { %>
+                <p style="color: rgb(214, 16, 16);"><%= errors[0].msg %></p>
+            <% } %>
+            <% if (admin) { %>
+                <h1>You are an admin!</h1>
+                <p><a href="/home">Return to home page</a></p>
+            <% } else { %>
+                <h2>Become an admin</h2>
+                <form action="" method="POST">
+                    <label for="code">Secret code:</label>
+                    <input type="text" id="code" name="code" required value="<%= code %>">
+
+                    <button type="submit">Submit</button>
+                </form>
+            <% } %>
+        </div>
+    </main>
+</body>
+</html>
