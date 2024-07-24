@@ -128,6 +128,7 @@ nav h3 {
 nav ul {
     list-style: none;
     margin: 10;
+    font-size: 15px;
     padding: 10;
 }
 
