@@ -1,4 +1,4 @@
-# [Thoughts](https://the-thoughts-app.azurewebsites.net)
+# [Thoughts](https://thethoughtsapp.vercel.app)
 
 Thoughts is a unique platform where people can share their deepest thoughts and darkest secrets. This community is built on trust and privacy, allowing users to express themselves freely without fear of judgment.
 
@@ -50,7 +50,7 @@ Launch the application server.
 npm start
 ```
 
-Visit [Thoughts](https://the-thoughts-app.azurewebsites.net) to access the live site.
+Visit [Thoughts](https://thethoughtsapp.vercel.app) to access the live site.
 
 ## Contribution
 
