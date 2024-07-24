@@ -9,16 +9,12 @@ const passport = require('passport');
 const favicon = require('serve-favicon');
 const flash = require('connect-flash');
 const compression = require("compression");
-
+const helmet = require("helmet");
 const indexRouter = require('./routes/index');
 
 const app = express();
 
-//fixing inline styling
-app.use((req, res, next) => {
-  res.removeHeader("Content-Security-Policy"); 
-  next();
-});
+app.use(helmet());
 
 // Set up mongoose connection
 const mongoose = require("mongoose");
@@ -38,7 +34,7 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 const RateLimit = require("express-rate-limit");
 const limiter = RateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute
-  max: 20,
+  max: 50,
 });
 
 app.use(limiter);

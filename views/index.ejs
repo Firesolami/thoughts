@@ -38,29 +38,17 @@
             </section>
             <% if (isSignedIn) { %>
                 <div class="action-buttons">
-                    <button onclick="location.href='/home'">Go to home page</button>
+                    <button class="navigate" data-url="/home">Go to home page</button>
                 </div>
             <% } else { %>
                 <div class="action-buttons">
-                    <button onclick="location.href='/login'">Login</button>
-                    <button onclick="location.href='/signup'">Sign Up</button>
+                    <button class="navigate" data-url="/login">Login</button>
+                    <button class="navigate" data-url="/signup">Sign Up</button>
                 </div>
             <% } %>
         </div>
     </main>
-    <script>
-        window.addEventListener('DOMContentLoaded', (event) => {
-            const hash = window.location.hash.substring(1);
-            if (hash) {
-                const section = document.getElementById(hash);
-                if (section) {
-                    section.classList.add('highlight');
-                    setTimeout(() => {
-                        section.classList.remove('highlight');
-                    }, 5000); 
-                }
-            }
-        });
-    </script>
+    <script src="/javascripts/index.js" defer></script>
+    <script src="/javascripts/admin.js" defer></script>
 </body>
 </html>

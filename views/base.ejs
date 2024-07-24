@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <h1 onclick="viewMessageDetails('/home')">Thoughts</h1>
+        <h1 id="header-title">Thoughts</h1>
         <div class="hamburger" id="hamburger">
             ☰
         </div>
@@ -25,26 +25,6 @@
         </ul>
     </nav>
     <a href="/create-message" class="create-thought-button">+</a>
-    <script>
-        // Toggle navigation menu
-        document.getElementById('hamburger').addEventListener('click', function() {
-            var navMenu = document.getElementById('nav-menu');
-            navMenu.classList.toggle('show');
-        });
-
-        // Close navigation menu when clicking outside
-        document.addEventListener('click', function(event) {
-            var navMenu = document.getElementById('nav-menu');
-            var hamburger = document.getElementById('hamburger');
-            if (!navMenu.contains(event.target) && !hamburger.contains(event.target)) {
-                navMenu.classList.remove('show');
-            }
-        });
-
-        // Function to view message details
-        function viewMessageDetails(url) {
-            window.location.href = url;
-        }
-    </script>
+    <script src="/javascripts/script.js"></script>
 </body>
 </html>

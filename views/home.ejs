@@ -1,14 +1,13 @@
 <%- include('base', {title: title}) %>
-<html>
 <body>
     <main>
-        <div class="post" onclick="viewMessageDetails('/')">
+        <div class="post">
             <div class="post-content">
                 <span>Premium member/admin count: <%= count %> </span>                
             </div>
         </div>
         <% messages.forEach((message_detail) => { %>
-            <div class="post" onclick="viewMessageDetails('<%- message_detail.url %>')">
+            <div class="post" data-url="<%- message_detail.url %>">
                 <% if (currentUser.isMember || message_detail.author.username === currentUser.username ) { %>
                     <div class="post-header">
                         <span class="username"><%- message_detail.author.username %></span>
