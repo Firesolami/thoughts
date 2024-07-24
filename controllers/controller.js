@@ -272,7 +272,7 @@ exports.create_message_post = [
             const message = new Message({
                 author: req.user._id,
                 message: req.body.message,
-                date_of_creation: Date.now()
+                date_of_creation: Date.now() + 3600000
             });
             await message.save();
             res.redirect('/home');
