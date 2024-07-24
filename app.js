@@ -10,6 +10,7 @@ const favicon = require('serve-favicon');
 const flash = require('connect-flash');
 const compression = require("compression");
 const helmet = require("helmet");
+const crypto = require('crypto');
 
 const indexRouter = require('./routes/index');
 
@@ -25,6 +26,29 @@ async function main() {
   await mongoose.connect(mongoDB);
 }
 
+app.use((req, res, next) => {
+  res.locals.nonce = crypto.randomBytes(16).toString('base64');
+  next();
+});
+
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", (req, res) => `'nonce-${res.locals.nonce}'`],
+      styleSrc: ["'self'"],
+    },
+  })
+);
+
+app.use((req, res, next) => {
+  res.setHeader(
+    'Content-Security-Policy',
+    `script-src 'self' 'nonce-${res.locals.nonce}';`
+  );
+  next();
+});
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -38,14 +62,12 @@ const limiter = RateLimit({
 
 app.use(limiter);
 
-app.use(helmet());
 app.use(compression());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
 
 app.use(session({
   secret: process.env.SESSION_SECRET,
